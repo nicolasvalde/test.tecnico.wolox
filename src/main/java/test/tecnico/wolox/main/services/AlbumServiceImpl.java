@@ -16,4 +16,9 @@ public class AlbumServiceImpl implements IAlbumService {
 	public Album[] findAll() {
 		return albumRepository.findAll();
 	}
+	
+	@Override
+	public Album[] findByUserId(int userId) {
+		return albumRepository.findByUserId(userId);
+	}
 }

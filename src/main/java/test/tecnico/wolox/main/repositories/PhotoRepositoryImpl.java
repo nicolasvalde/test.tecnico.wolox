@@ -19,4 +19,9 @@ public class PhotoRepositoryImpl implements IPhotoRepository {
 		return restTemplate.getForObject(EXTERNAL_API_URL + "/photos", Photo[].class);
 	}
 
+	@Override
+	public Photo[] findByUserId(int userId) {
+		return restTemplate.getForObject(EXTERNAL_API_URL+ "/user/" + userId + "/photos", Photo[].class);
+	}
+
 }

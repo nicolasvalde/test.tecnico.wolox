@@ -13,10 +13,15 @@ public class AlbumRepositoryImpl implements IAlbumRepository {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Override
 	public Album[] findAll() {
 		return restTemplate.getForObject(EXTERNAL_API_URL + "/albums", Album[].class);
+	}
+
+	@Override
+	public Album[] findByUserId(int userId) {
+		return restTemplate.getForObject(EXTERNAL_API_URL + "/users/" + userId + "/albums", Album[].class);
 	}
 
 }

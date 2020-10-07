@@ -7,4 +7,6 @@ import test.tecnico.wolox.main.entities.Album;
 @Repository
 public interface IAlbumRepository {
 	public Album[] findAll();
+
+	public Album[] findByUserId(int userId);
 }

@@ -17,4 +17,9 @@ public class PhotoServiceImpl implements IPhotoService {
 		return photoRepository.findAll();
 	}
 
+	@Override
+	public Photo[] findByUserId(int userId) {
+		return photoRepository.findByUserId(userId);
+	}
+
 }
