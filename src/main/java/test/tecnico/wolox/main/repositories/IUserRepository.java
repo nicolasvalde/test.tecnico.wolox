@@ -1,5 +1,11 @@
 package test.tecnico.wolox.main.repositories;
 
-public interface IUserRepository {
+import org.springframework.stereotype.Repository;
 
+import test.tecnico.wolox.main.entities.User;
+
+@Repository
+public interface IUserRepository {
+	
+	public User[] findAll();
 }
