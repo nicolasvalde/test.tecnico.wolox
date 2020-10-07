@@ -10,11 +10,11 @@ import test.tecnico.wolox.main.repositories.IUserRepository;
 public class UserServiceImpl implements IUserService{
 
 	@Autowired
-	private IUserRepository accountRespository;
+	private IUserRepository userRespository;
 	
 	@Override
 	public User[] findAll() {
-		return accountRespository.findAll();
+		return userRespository.findAll();
 	}
 
 	

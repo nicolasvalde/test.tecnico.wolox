@@ -7,8 +7,6 @@ public class Album {
 	private int userId;
 	
 	private String title;
-	
-	private Photo[] photos;
 
 	public int getId() {
 		return id;
@@ -32,15 +30,6 @@ public class Album {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public Photo[] getPhotos() {
-		return photos;
-	}
-
-	public void setPhotos(Photo[] photos) {
-		this.photos = photos;
-	}
-	
+	}	
 	
 }
