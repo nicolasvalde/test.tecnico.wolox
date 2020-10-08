@@ -1,16 +1,23 @@
 package test.tecnico.wolox.main.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Photo {
 	
+	@Id
 	private int id;
-	
-	private int albumId;
 	
 	private String title;
 	
 	private String url;
 	
 	private String thumbnailUrl;
+	
+	@ManyToOne
+	private Album album;
 
 	public int getId() {
 		return id;
@@ -18,14 +25,6 @@ public class Photo {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getAlbumId() {
-		return albumId;
-	}
-
-	public void setAlbumId(int albumId) {
-		this.albumId = albumId;
 	}
 
 	public String getTitle() {
@@ -50,6 +49,14 @@ public class Photo {
 
 	public void setThumbnailUrl(String thumbnailUrl) {
 		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public Album getAlbum() {
+		return album;
+	}
+
+	public void setAlbum(Album album) {
+		this.album = album;
 	}
 	
 	

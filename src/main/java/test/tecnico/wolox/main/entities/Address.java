@@ -1,7 +1,15 @@
 package test.tecnico.wolox.main.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Address {
 
+	@Id
+	private int id;
+	
 	private String street;
 
 	private String suite;
@@ -10,6 +18,7 @@ public class Address {
 
 	private String zipcode;
 
+	@OneToOne
 	private Geo geo;
 
 	public String getStreet() {

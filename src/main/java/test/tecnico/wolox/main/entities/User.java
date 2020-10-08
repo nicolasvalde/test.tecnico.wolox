@@ -1,19 +1,27 @@
 package test.tecnico.wolox.main.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class User {
 
+	@Id
 	private int id;
 
 	private String name;
 
 	private String username;
 
+	@OneToOne
 	private Address address;
 
 	private String phone;
 
 	private String website;
 
+	@OneToOne
 	private Company company;
 
 	public int getId() {

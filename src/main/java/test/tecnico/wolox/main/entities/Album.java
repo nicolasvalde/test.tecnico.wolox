@@ -1,11 +1,16 @@
 package test.tecnico.wolox.main.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Album {
 
+	@Id
 	private int id;
-	
+
 	private int userId;
-	
+
 	private String title;
 
 	public int getId() {
@@ -30,6 +35,6 @@ public class Album {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}	
-	
+	}
+
 }
