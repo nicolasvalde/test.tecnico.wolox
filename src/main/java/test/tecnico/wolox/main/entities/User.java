@@ -1,27 +1,35 @@
 package test.tecnico.wolox.main.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
+@Table(name = "users")
+@TableGenerator(initialValue = 1000, name = "tabGen")
 public class User {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "tabGen" )
 	private int id;
 
 	private String name;
 
 	private String username;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
 	private String phone;
 
 	private String website;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Company company;
 
 	public int getId() {

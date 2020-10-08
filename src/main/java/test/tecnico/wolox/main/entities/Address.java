@@ -1,6 +1,9 @@
 package test.tecnico.wolox.main.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -8,6 +11,7 @@ import javax.persistence.OneToOne;
 public class Address {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
 	private String street;
@@ -18,7 +22,7 @@ public class Address {
 
 	private String zipcode;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Geo geo;
 
 	public String getStreet() {

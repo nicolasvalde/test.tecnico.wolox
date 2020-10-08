@@ -7,14 +7,14 @@ import org.springframework.web.client.RestTemplate;
 import test.tecnico.wolox.main.entities.User;
 
 @Repository
-public class UserRepositoryImpl implements IUserRepository {
+public class UserRepositoryImpl {
 
 	private String EXTERNAL_API_URL = "https://jsonplaceholder.typicode.com";
 	
 	@Autowired
 	private RestTemplate restTemplate;
 	
-	@Override
+	
 	public User[] findAll() {
 		return restTemplate.getForObject(EXTERNAL_API_URL + "/users", User[].class);
 	}
