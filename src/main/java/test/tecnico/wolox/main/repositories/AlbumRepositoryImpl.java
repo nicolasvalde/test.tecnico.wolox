@@ -21,7 +21,7 @@ public class AlbumRepositoryImpl implements IAlbumRepository {
 
 	@Override
 	public Album[] findByUserId(int userId) {
-		return restTemplate.getForObject(EXTERNAL_API_URL + "/users/" + userId + "/albums", Album[].class);
+		return restTemplate.getForObject(EXTERNAL_API_URL + "/albums?userId=" + userId, Album[].class);
 	}
 
 }

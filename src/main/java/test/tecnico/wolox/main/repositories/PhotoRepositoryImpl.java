@@ -20,8 +20,8 @@ public class PhotoRepositoryImpl implements IPhotoRepository {
 	}
 
 	@Override
-	public Photo[] findByUserId(int userId) {
-		return restTemplate.getForObject(EXTERNAL_API_URL+ "/user/" + userId + "/photos", Photo[].class);
+	public Photo[] findByAlbumId(int albumId) {
+		return restTemplate.getForObject(EXTERNAL_API_URL+ "/photos?albumId=" + albumId, Photo[].class);
 	}
 
 }

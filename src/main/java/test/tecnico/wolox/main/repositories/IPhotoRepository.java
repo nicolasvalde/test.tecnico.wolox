@@ -7,5 +7,5 @@ import test.tecnico.wolox.main.entities.Photo;
 @Repository
 public interface IPhotoRepository {
 	public Photo[] findAll();
-	public Photo[] findByUserId(int userId);
+	public Photo[] findByAlbumId(int albumId);
 }
