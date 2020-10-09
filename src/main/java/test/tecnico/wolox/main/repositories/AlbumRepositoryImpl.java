@@ -7,19 +7,17 @@ import org.springframework.web.client.RestTemplate;
 import test.tecnico.wolox.main.entities.Album;
 
 @Repository
-public class AlbumRepositoryImpl implements IAlbumRepository {
+public class AlbumRepositoryImpl {
 
 	private String EXTERNAL_API_URL = "https://jsonplaceholder.typicode.com";
 
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@Override
 	public Album[] findAll() {
 		return restTemplate.getForObject(EXTERNAL_API_URL + "/albums", Album[].class);
 	}
 
-	@Override
 	public Album[] findByUserId(int userId) {
 		return restTemplate.getForObject(EXTERNAL_API_URL + "/albums?userId=" + userId, Album[].class);
 	}

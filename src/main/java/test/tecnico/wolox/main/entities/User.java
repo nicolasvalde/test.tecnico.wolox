@@ -1,13 +1,19 @@
 package test.tecnico.wolox.main.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -15,7 +21,7 @@ import javax.persistence.TableGenerator;
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "tabGen" )
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "tabGen")
 	private int id;
 
 	private String name;
@@ -31,6 +37,11 @@ public class User {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private Company company;
+	
+	@OneToMany
+	@JoinColumn(name = "user_id")
+	@JsonIgnore
+	private List<Album> albums;
 
 	public int getId() {
 		return id;
@@ -87,5 +98,15 @@ public class User {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	public List<Album> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(List<Album> albums) {
+		this.albums = albums;
+	}
+	
+	
 
 }

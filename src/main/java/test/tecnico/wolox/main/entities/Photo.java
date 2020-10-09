@@ -1,23 +1,30 @@
 package test.tecnico.wolox.main.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 @Entity
+@Table(name = "photos")
+@TableGenerator(name = "tabGen", initialValue = 50000)
 public class Photo {
-	
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "tabGen")
 	private int id;
-	
+
 	private String title;
-	
+
 	private String url;
-	
+
 	private String thumbnailUrl;
 	
-	@ManyToOne
-	private Album album;
+	@Column(name = "album_id")
+	private int albumId;
 
 	public int getId() {
 		return id;
@@ -51,12 +58,12 @@ public class Photo {
 		this.thumbnailUrl = thumbnailUrl;
 	}
 
-	public Album getAlbum() {
-		return album;
+	public int getAlbumId() {
+		return albumId;
 	}
 
-	public void setAlbum(Album album) {
-		this.album = album;
+	public void setAlbumId(int albumId) {
+		this.albumId = albumId;
 	}
 	
 	

@@ -24,13 +24,13 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public List<User> findAll() {
 		
-		Iterable<User> remoteUsers = userRespositoryLocal.findAll();
+		Iterable<User> localUsers = userRespositoryLocal.findAll();
 		
-		User[] localUsers = userRepositoryRemote.findAll();
+		User[] remoteUsers = userRepositoryRemote.findAll();
 		
-		List<User> finalUsersList =  StreamSupport.stream(remoteUsers.spliterator(), false).collect(Collectors.toList());
+		List<User> finalUsersList =  StreamSupport.stream(localUsers.spliterator(), false).collect(Collectors.toList());
 		
-		for (User user : localUsers) {
+		for (User user : remoteUsers) {
 			finalUsersList.add(user);
 		}
 		
@@ -39,10 +39,6 @@ public class UserServiceImpl implements IUserService {
 
 	@Override
 	public User save(User user) {
-		
-//		aca hacer el mapeo
-		
-		
 		return userRespositoryLocal.save(user);
 	}
 }
