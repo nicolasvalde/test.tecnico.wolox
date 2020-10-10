@@ -42,7 +42,10 @@ public class AlbumController {
 	@PostMapping
 	@Transactional
 	public ResponseEntity create(@RequestBody Album album) {
-		return ResponseEntity.ok(albumService.save(album));
-
+		try {
+			return ResponseEntity.ok(albumService.save(album));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 }

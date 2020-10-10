@@ -39,7 +39,11 @@ public class PhotoController {
 
 	@PostMapping
 	public ResponseEntity create(@RequestBody Photo photo) {
-		return ResponseEntity.ok(photoService.save(photo));
+		try {
+			return ResponseEntity.ok(photoService.save(photo));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
 	}
 
 }

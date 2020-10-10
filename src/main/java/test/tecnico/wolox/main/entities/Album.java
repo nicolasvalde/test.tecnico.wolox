@@ -27,11 +27,16 @@ public class Album {
 
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@OneToMany
 	@JoinColumn(name = "album_id")
 	@JsonIgnore
 	private List<Photo> photos;
+
+	@OneToMany(targetEntity = Permission.class)
+	@JoinColumn(name = "album_id")
+//	@JsonIgnore
+	private List<Permission> permissions;
 
 	public int getId() {
 		return id;
@@ -57,4 +62,21 @@ public class Album {
 		this.userId = userId;
 	}
 
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+
+	public List<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
+	}
+
+	
 }

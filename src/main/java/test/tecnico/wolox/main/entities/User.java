@@ -42,6 +42,11 @@ public class User {
 	@JoinColumn(name = "user_id")
 	@JsonIgnore
 	private List<Album> albums;
+	
+	@OneToMany
+	@JoinColumn(name = "user_id")
+//	@JsonIgnore
+	private List<Permission> permissions;
 
 	public int getId() {
 		return id;
@@ -105,6 +110,14 @@ public class User {
 
 	public void setAlbums(List<Album> albums) {
 		this.albums = albums;
+	}
+
+	public List<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(List<Permission> permissions) {
+		this.permissions = permissions;
 	}
 	
 	
