@@ -14,17 +14,27 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import test.tecnico.wolox.main.entities.Album;
+import test.tecnico.wolox.main.entities.Permission;
+import test.tecnico.wolox.main.entities.User;
 import test.tecnico.wolox.main.repositories.AlbumRepositoryImpl;
 import test.tecnico.wolox.main.repositories.IAlbumRepository;
+import test.tecnico.wolox.main.repositories.IPermissionDAO;
+import test.tecnico.wolox.main.repositories.IUserRepository;
 
 @Service
 public class AlbumServiceImpl implements IAlbumService {
 
 	@Autowired
-	IAlbumRepository albumRepositoryLocal;
+	private IAlbumRepository albumRepositoryLocal;
 
 	@Autowired
-	AlbumRepositoryImpl albumRepositoryRemote;
+	private AlbumRepositoryImpl albumRepositoryRemote;
+	
+	@Autowired
+	private IPermissionDAO permissionDAO;
+	
+	@Autowired
+	private IUserRepository userRepository;
 
 	@Override
 	public List<Album> findAll() {
@@ -63,6 +73,21 @@ public class AlbumServiceImpl implements IAlbumService {
 
 	@Override
 	public Album save(Album album) {
+		
+		Permission permission = permissionDAO.save(album.getPermissions().get(0));
+		
+		User user = new User();
+		
+		user = userRepository.findById(album.getUserId()).get();
+		
+		List<Permission> pList = user.getPermissions();
+		
+		pList.add(permission);
+		
+		user.setPermissions(pList);
+		
+		user = userRepository.save(user);
+		
 		return albumRepositoryLocal.save(album);
 	}
 }

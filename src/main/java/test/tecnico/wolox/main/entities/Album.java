@@ -2,6 +2,7 @@ package test.tecnico.wolox.main.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,8 +34,8 @@ public class Album {
 	@JsonIgnore
 	private List<Photo> photos;
 
-	@OneToMany(targetEntity = Permission.class)
-	@JoinColumn(name = "album_id")
+	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "permission_id")
 //	@JsonIgnore
 	private List<Permission> permissions;
 

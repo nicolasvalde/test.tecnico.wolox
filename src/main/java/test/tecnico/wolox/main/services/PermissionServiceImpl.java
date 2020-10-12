@@ -7,32 +7,33 @@ import org.springframework.stereotype.Service;
 
 import test.tecnico.wolox.main.entities.Permission;
 import test.tecnico.wolox.main.entities.PermissionId;
-import test.tecnico.wolox.main.repositories.IPermissionRepository;
+import test.tecnico.wolox.main.repositories.IPermissionDAO;
 
 @Service
 public class PermissionServiceImpl implements IPermissionService {
 
 	@Autowired
-	private IPermissionRepository permissionRepository;
+	private IPermissionDAO permissionRepository;
 
 	@Override
 	public List<Permission> findAll() {
-		return permissionRepository.findAll();
+		return null;
+//		return permissionRepository.findAll();
 	}
 
 	@Override
 	public Permission save(Permission permission) throws Exception {
 
-		PermissionId p = new PermissionId(permission.getUserId(), permission.getAlbumId());
+//		PermissionId p = new PermissionId(permission.getUser().getId(), permission.getAlbum().getId());
+//		
+//		
+//		if(permissionRepository.existsById(p)) {
+//			throw new Exception("Ya existe ese permiso");
+//		} else {
+//			System.out.println(permissionRepository.existsById(p));
+//		}
 		
-		
-		if(permissionRepository.existsById(p)) {
-			throw new Exception("Ya existe ese permiso");
-		} else {
-			System.out.println(permissionRepository.existsById(p));
-		}
-		
-		return permissionRepository.saveAndFlush(permission);
+		return permissionRepository.save(permission);
 
 	}
 

@@ -2,33 +2,49 @@ package test.tecnico.wolox.main.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="addresses")
+@Table(name = "addresses")
 public class Address {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	
-	@OneToOne
-	private User user;
-	
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "address")
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private Geo geo;
 
 	private String street;
-	
+
 	private String suite;
-	
+
 	private String city;
-	
+
 	private String zipcode;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Geo getGeo() {
+		return geo;
+	}
+
+	public void setGeo(Geo geo) {
+		this.geo = geo;
+	}
 
 	public String getStreet() {
 		return street;
@@ -60,14 +76,6 @@ public class Address {
 
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
-	}
-
-	public Geo getGeo() {
-		return geo;
-	}
-
-	public void setGeo(Geo geo) {
-		this.geo = geo;
 	}
 
 }

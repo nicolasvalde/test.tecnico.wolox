@@ -15,9 +15,6 @@ public class Company {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	@OneToOne
-	private User user;
-	
 	private String name;
 	
 	private String catchPhrase;
@@ -55,15 +52,5 @@ public class Company {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-	
-	
 	
 }

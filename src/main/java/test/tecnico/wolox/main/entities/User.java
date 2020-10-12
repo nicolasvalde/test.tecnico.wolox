@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,21 +33,19 @@ public class User {
 	
 	private String website;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 
-	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
-	@JoinColumn(name = "company_id", referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.ALL)
 	private Company company;
 	
 	@OneToMany
 	@JoinColumn(name = "user_id")
-	@JsonIgnore
+//	@JsonIgnore
 	private List<Album> albums;
 	
-	@OneToMany
-	@JoinColumn(name = "user_id")
+	@OneToMany(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "user_id")
 //	@JsonIgnore
 	private List<Permission> permissions;
 

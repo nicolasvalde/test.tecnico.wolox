@@ -7,6 +7,8 @@ import test.tecnico.wolox.main.entities.Permission;
 import test.tecnico.wolox.main.entities.PermissionId;
 
 @Repository
-public interface IPermissionRepository extends JpaRepository<Permission, PermissionId> {
+public interface IPermissionDAO {
+
+	public Permission save(Permission permission);
 
 }

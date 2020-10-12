@@ -7,41 +7,44 @@ import javax.persistence.Column;
 public class PermissionId implements Serializable {
 
 	@Column(name = "user_id")
-	private Integer userId;
+	private int user;
 
 	@Column(name = "album_id")
-	private Integer albumId;
+	private int album;
 
 	public PermissionId() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public PermissionId(Integer userId, Integer albumId) {
-		this.userId = userId;
-		this.albumId = albumId;
+	public PermissionId(int user, int album) {
+		super();
+		this.user = user;
+		this.album = album;
 	}
 
-	public Integer getUserId() {
-		return userId;
+	public int getUser() {
+		return user;
 	}
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setUser(int user) {
+		this.user = user;
 	}
 
-	public Integer getAlbumId() {
-		return albumId;
+	public int getAlbum() {
+		return album;
 	}
 
-	public void setAlbumId(Integer albumId) {
-		this.albumId = albumId;
+	public void setAlbum(int album) {
+		this.album = album;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((albumId == null) ? 0 : albumId.hashCode());
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + album;
+		result = prime * result + user;
 		return result;
 	}
 
@@ -54,17 +57,13 @@ public class PermissionId implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		PermissionId other = (PermissionId) obj;
-		if (albumId == null) {
-			if (other.albumId != null)
-				return false;
-		} else if (!albumId.equals(other.albumId))
+		if (album != other.album)
 			return false;
-		if (userId == null) {
-			if (other.userId != null)
-				return false;
-		} else if (!userId.equals(other.userId))
+		if (user != other.user)
 			return false;
 		return true;
 	}
+
+
 
 }
