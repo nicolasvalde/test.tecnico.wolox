@@ -16,16 +16,19 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 	
-	private String street;
-
-	private String suite;
-
-	private String city;
-
-	private String zipcode;
-
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne
+	private User user;
+	
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "address")
 	private Geo geo;
+
+	private String street;
+	
+	private String suite;
+	
+	private String city;
+	
+	private String zipcode;
 
 	public String getStreet() {
 		return street;

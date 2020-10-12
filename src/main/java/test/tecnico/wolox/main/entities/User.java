@@ -28,14 +28,16 @@ public class User {
 
 	private String username;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
-
 	private String phone;
-
+	
 	private String website;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+	@JoinColumn(name = "address_id", referencedColumnName = "id")
+	private Address address;
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+	@JoinColumn(name = "company_id", referencedColumnName = "id")
 	private Company company;
 	
 	@OneToMany
