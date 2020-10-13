@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
+@Entity(name = "permission")
 @Table(name = "permissions")
 //@IdClass(PermissionId.class)
 public class Permission {
@@ -41,6 +41,6 @@ public class Permission {
 
 	public void setWrite(boolean write) {
 		this.write = write;
-	}
+	}	
 	
 }

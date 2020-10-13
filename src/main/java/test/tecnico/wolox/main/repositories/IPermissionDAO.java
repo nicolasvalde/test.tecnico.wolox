@@ -1,14 +1,18 @@
 package test.tecnico.wolox.main.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import test.tecnico.wolox.main.entities.Permission;
-import test.tecnico.wolox.main.entities.PermissionId;
 
 @Repository
 public interface IPermissionDAO {
 
 	public Permission save(Permission permission);
+	
+	public List<Permission> findAll();
+
+	public Permission findByParams(int userId, int albumId);
 
 }
