@@ -1,4 +1,4 @@
-package test.tecnico.wolox.main.repositories;
+package test.tecnico.wolox.main.repositories.local;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import test.tecnico.wolox.main.entities.Album;
 
 @Repository
-public interface IAlbumRepository extends JpaRepository<Album, Integer>{
+public interface IAlbumRepositoryLocal extends JpaRepository<Album, Integer>{
 	@Query(value =  "SELECT id,title,user_id FROM Albums WHERE user_id = ?1", nativeQuery = true)
 	public List<Album> findByUserId(int id);
 }

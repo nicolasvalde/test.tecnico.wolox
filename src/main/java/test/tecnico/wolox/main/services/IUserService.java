@@ -13,4 +13,6 @@ public interface IUserService {
 	public List<User> findAll();
 	
 	public User save(User user);
+
+	List<User> findByAlbumAndPermissions(int albumId, boolean read, boolean write);
 }

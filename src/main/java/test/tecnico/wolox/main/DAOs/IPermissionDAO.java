@@ -1,4 +1,4 @@
-package test.tecnico.wolox.main.repositories;
+package test.tecnico.wolox.main.DAOs;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ public interface IPermissionDAO {
 
 	public Permission save(Permission permission);
 	
-	public List<Permission> findAll();
+//	public List<Permission> findAll();
 
 	public Permission findByParams(int userId, int albumId);
 

@@ -9,18 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import test.tecnico.wolox.main.entities.User;
-import test.tecnico.wolox.main.repositories.IUserRepository;
-import test.tecnico.wolox.main.repositories.UserRepositoryImpl;
+import test.tecnico.wolox.main.repositories.local.IUserRepositoryLocal;
+import test.tecnico.wolox.main.repositories.remote.UserRepositoryImplRemote;
 
 @Service
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	private IUserRepository userRespositoryLocal;
+	private IUserRepositoryLocal userRespositoryLocal;
 	
 	@Autowired 
-	UserRepositoryImpl userRepositoryRemote;
-
+	private UserRepositoryImplRemote userRepositoryRemote;
+	
 	@Override
 	public List<User> findAll() {
 		
@@ -35,6 +35,11 @@ public class UserServiceImpl implements IUserService {
 		}
 		
 		return finalUsersList;
+	}
+	
+	@Override
+	public List<User> findByAlbumAndPermissions(int albumId, boolean read, boolean write) {
+		return userRespositoryLocal.findByAlbumAndPermissions(albumId, read, write);
 	}
 
 	@Override

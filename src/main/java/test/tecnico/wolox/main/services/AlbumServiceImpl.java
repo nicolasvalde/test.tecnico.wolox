@@ -13,28 +13,28 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import test.tecnico.wolox.main.DAOs.IPermissionDAO;
 import test.tecnico.wolox.main.entities.Album;
 import test.tecnico.wolox.main.entities.Permission;
 import test.tecnico.wolox.main.entities.User;
-import test.tecnico.wolox.main.repositories.AlbumRepositoryImpl;
-import test.tecnico.wolox.main.repositories.IAlbumRepository;
-import test.tecnico.wolox.main.repositories.IPermissionDAO;
-import test.tecnico.wolox.main.repositories.IUserRepository;
+import test.tecnico.wolox.main.repositories.local.IAlbumRepositoryLocal;
+import test.tecnico.wolox.main.repositories.local.IUserRepositoryLocal;
+import test.tecnico.wolox.main.repositories.remote.AlbumRepositoryImplRemote;
 
 @Service
 public class AlbumServiceImpl implements IAlbumService {
 
 	@Autowired
-	private IAlbumRepository albumRepositoryLocal;
+	private IAlbumRepositoryLocal albumRepositoryLocal;
 
 	@Autowired
-	private AlbumRepositoryImpl albumRepositoryRemote;
+	private AlbumRepositoryImplRemote albumRepositoryRemote;
 	
 	@Autowired
 	private IPermissionDAO permissionDAO;
 	
 	@Autowired
-	private IUserRepository userRepository;
+	private IUserRepositoryLocal userRepository;
 
 	@Override
 	public List<Album> findAll() {

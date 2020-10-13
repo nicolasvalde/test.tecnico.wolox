@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import test.tecnico.wolox.main.DAOs.IPermissionDAO;
 import test.tecnico.wolox.main.entities.Permission;
-import test.tecnico.wolox.main.repositories.IPermissionDAO;
 import test.tecnico.wolox.main.services.IPermissionService;
 
 @RestController

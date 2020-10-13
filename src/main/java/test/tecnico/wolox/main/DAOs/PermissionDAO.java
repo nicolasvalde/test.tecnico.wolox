@@ -1,4 +1,4 @@
-package test.tecnico.wolox.main.repositories;
+package test.tecnico.wolox.main.DAOs;
 
 import java.util.List;
 
@@ -19,13 +19,13 @@ public class PermissionDAO implements IPermissionDAO {
 	@PersistenceContext
 	EntityManager entityManager;
 
-	@Override
-	@Transactional
-	public List<Permission> findAll() {
-		List<Permission> permissions = entityManager. createQuery("SELECT p FROM permission p").getResultList();
-		
-		return permissions;
-	}
+//	@Override
+//	@Transactional
+//	public List<Permission> findAll() {
+//		List<Permission> permissions = entityManager. createQuery("SELECT p FROM permission p").getResultList();
+//		
+//		return permissions;
+//	}
 	
 	@Override
 	@Transactional

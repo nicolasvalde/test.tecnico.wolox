@@ -10,25 +10,25 @@ import org.springframework.stereotype.Service;
 
 import test.tecnico.wolox.main.entities.Album;
 import test.tecnico.wolox.main.entities.Photo;
-import test.tecnico.wolox.main.repositories.AlbumRepositoryImpl;
-import test.tecnico.wolox.main.repositories.IAlbumRepository;
-import test.tecnico.wolox.main.repositories.IPhotoRepository;
-import test.tecnico.wolox.main.repositories.PhotoRepositoryImpl;
+import test.tecnico.wolox.main.repositories.local.IAlbumRepositoryLocal;
+import test.tecnico.wolox.main.repositories.local.IPhotoRepositoryLocal;
+import test.tecnico.wolox.main.repositories.remote.AlbumRepositoryImplRemote;
+import test.tecnico.wolox.main.repositories.remote.PhotoRepositoryImplRemote;
 
 @Service
 public class PhotoServiceImpl implements IPhotoService {
 
 	@Autowired
-	IPhotoRepository photoRepositoryLocal;
+	IPhotoRepositoryLocal photoRepositoryLocal;
 
 	@Autowired
-	PhotoRepositoryImpl photoRepositoryRemote;
+	PhotoRepositoryImplRemote photoRepositoryRemote;
 
 	@Autowired
-	IAlbumRepository albumRepositoryLocal;
+	IAlbumRepositoryLocal albumRepositoryLocal;
 	
 	@Autowired
-	AlbumRepositoryImpl albumRepositoryRemote;
+	AlbumRepositoryImplRemote albumRepositoryRemote;
 
 	@Override
 	public List<Photo> findAll() {
