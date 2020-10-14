@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import test.tecnico.wolox.main.entities.User;
 import test.tecnico.wolox.main.repositories.local.IUserRepositoryLocal;
+import test.tecnico.wolox.main.repositories.remote.IUserRepositoryRemote;
 import test.tecnico.wolox.main.repositories.remote.UserRepositoryImplRemote;
 
 @Service
@@ -19,7 +20,7 @@ public class UserServiceImpl implements IUserService {
 	private IUserRepositoryLocal userRespositoryLocal;
 	
 	@Autowired 
-	private UserRepositoryImplRemote userRepositoryRemote;
+	private IUserRepositoryRemote userRepositoryRemote;
 	
 	@Override
 	public List<User> findAll() {

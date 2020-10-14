@@ -22,7 +22,7 @@ public class AlbumController {
 	IAlbumService albumService;
 
 	@GetMapping
-	public ResponseEntity getAll() {
+	public ResponseEntity<?> getAll() {
 		try {
 			return ResponseEntity.ok().body(albumService.findAll());
 		} catch (Exception e) {
@@ -31,7 +31,7 @@ public class AlbumController {
 	}
 
 	@GetMapping(params = "userId")
-	public ResponseEntity getByUserId(@RequestParam int userId) {
+	public ResponseEntity<?> getByUserId(@RequestParam int userId) {
 		try {
 			return ResponseEntity.ok().body(albumService.findByUserId(userId));
 		} catch (Exception e) {
@@ -41,7 +41,7 @@ public class AlbumController {
 
 	@PostMapping
 	@Transactional
-	public ResponseEntity create(@RequestBody Album album) {
+	public ResponseEntity<?> create(@RequestBody Album album) {
 		try {
 			return ResponseEntity.ok(albumService.save(album));
 		} catch (Exception e) {

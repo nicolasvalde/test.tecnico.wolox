@@ -20,7 +20,7 @@ public class UserController {
 	private IUserService userService;
 
 	@GetMapping
-	public ResponseEntity getAll() {
+	public ResponseEntity<?> getAll() {
 		try {
 			return ResponseEntity.ok().body(userService.findAll());
 		} catch (Exception e) {
@@ -29,7 +29,7 @@ public class UserController {
 	}
 
 	@GetMapping(params = { "albumId", "read", "write" })
-	public ResponseEntity getByAlbumAndPermissions(@RequestParam(required = true) int albumId,
+	public ResponseEntity<?> getByAlbumAndPermissions(@RequestParam(required = true) int albumId,
 			@RequestParam boolean read, @RequestParam boolean write) {
 		try {
 			return ResponseEntity.ok().body(userService.findByAlbumAndPermissions(albumId, read, write));
@@ -39,7 +39,7 @@ public class UserController {
 	}
 
 	@PostMapping
-	public ResponseEntity create(@RequestBody User user) {
+	public ResponseEntity<?> create(@RequestBody User user) {
 		try {
 			return ResponseEntity.ok(userService.save(user));
 		} catch (Exception e) {

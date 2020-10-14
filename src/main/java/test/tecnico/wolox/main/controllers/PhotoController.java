@@ -20,7 +20,7 @@ public class PhotoController {
 	IPhotoService photoService;
 
 	@GetMapping
-	public ResponseEntity getAll() {
+	public ResponseEntity<?> getAll() {
 		try {
 			return ResponseEntity.ok().body(photoService.findAll());
 		} catch (Exception e) {
@@ -29,7 +29,7 @@ public class PhotoController {
 	}
 
 	@GetMapping(params = "userId")
-	public ResponseEntity getByUserId(@RequestParam int userId) {
+	public ResponseEntity<?> getByUserId(@RequestParam int userId) {
 		try {
 			return ResponseEntity.ok().body(photoService.findByUserId(userId));
 		} catch (Exception e) {
@@ -38,7 +38,7 @@ public class PhotoController {
 	}
 
 	@PostMapping
-	public ResponseEntity create(@RequestBody Photo photo) {
+	public ResponseEntity<?> create(@RequestBody Photo photo) {
 		try {
 			return ResponseEntity.ok(photoService.save(photo));
 		} catch (Exception e) {
