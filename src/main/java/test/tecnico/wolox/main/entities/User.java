@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -41,12 +40,12 @@ public class User {
 	
 	@OneToMany
 	@JoinColumn(name = "user_id")
-//	@JsonIgnore
+	@JsonIgnore
 	private List<Album> albums;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
-//	@JsonIgnore
+	@JsonIgnore
 	private List<Permission> permissions;
 
 	public int getId() {

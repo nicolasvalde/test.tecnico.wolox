@@ -18,32 +18,6 @@ public class PermissionDAO implements IPermissionDAO {
 
 	@PersistenceContext
 	EntityManager entityManager;
-
-//	@Override
-//	@Transactional
-//	public List<Permission> findAll() {
-//		List<Permission> permissions = entityManager. createQuery("SELECT p FROM permission p").getResultList();
-//		
-//		return permissions;
-//	}
-	
-	@Override
-	@Transactional
-	public Permission findByParams(int userId, int albumId) {
-		
-		Query query =  entityManager.createNativeQuery("select p.* from permissions p where p.user_id = :userId and p.album_id = :albumId", Permission.class);
-		
-		query.setParameter("userId", userId);
-		
-		query.setParameter("albumId", albumId);
-		if( query.getResultList().size() > 0) {			
-			Object p = query.getResultList().get(0);
-			return (Permission) p;
-		} else {
-			return null;
-		}
-		
-	}
 	
 	@Override
 	@Transactional

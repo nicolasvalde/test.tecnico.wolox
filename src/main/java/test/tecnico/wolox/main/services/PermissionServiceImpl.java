@@ -17,26 +17,26 @@ import test.tecnico.wolox.main.repositories.local.IUserRepositoryLocal;
 public class PermissionServiceImpl implements IPermissionService {
 
 	@Autowired
-	private IPermissionRepositoryLocal permissionRepository;
+	private IPermissionRepositoryLocal permissionRepositoryLocal;
 
 	@Autowired
 	private IPermissionDAO permissionDAO;
 
 	@Autowired
-	private IUserRepositoryLocal userRepository;
+	private IUserRepositoryLocal userRepositoryLocal;
 
 	@Autowired
-	private IAlbumRepositoryLocal albumRepository;
+	private IAlbumRepositoryLocal albumRepositoryLocal;
 
 	@Override
 	public List<Permission> findAll() {
-		return permissionRepository.findAll();
+		return permissionRepositoryLocal.findAll();
 	}
 
 	@Override
 	public Permission update(Permission permission, int userId, int albumId) {
 
-		Permission p = permissionDAO.findByParams(userId, albumId);
+		Permission p = permissionRepositoryLocal.findByParams(userId, albumId);
 
 		p.setRead(permission.isRead());
 
@@ -50,7 +50,7 @@ public class PermissionServiceImpl implements IPermissionService {
 	@Override
 	public Permission save(Permission permission, int userId, int albumId) throws Exception {
 	
-		if (permissionDAO.findByParams(userId, albumId) != null) {
+		if (permissionRepositoryLocal.findByParams(userId, albumId) != null) {
 			throw new Exception("Ya existe ese permiso");
 		} else {
 	
@@ -66,7 +66,7 @@ public class PermissionServiceImpl implements IPermissionService {
 			 * que se persistan las relaciones con los permisos
 			 */
 	
-			album = albumRepository.findById(albumId).get();
+			album = albumRepositoryLocal.findById(albumId).get();
 	
 			List<Permission> pListAlbum = album.getPermissions();
 	
@@ -74,7 +74,7 @@ public class PermissionServiceImpl implements IPermissionService {
 	
 			user.setPermissions(pListAlbum);
 	
-			album = albumRepository.save(album);
+			album = albumRepositoryLocal.save(album);
 	
 			/*
 			 * Se actualiza la lista de permisos
@@ -82,7 +82,7 @@ public class PermissionServiceImpl implements IPermissionService {
 			 * que se persistan las relaciones
 			 */
 	
-			user = userRepository.findById(userId).get();
+			user = userRepositoryLocal.findById(userId).get();
 	
 			List<Permission> pListUser = user.getPermissions();
 	
@@ -90,7 +90,7 @@ public class PermissionServiceImpl implements IPermissionService {
 	
 			user.setPermissions(pListUser);
 	
-			user = userRepository.save(user);
+			user = userRepositoryLocal.save(user);
 	
 			return pTemp;
 		}

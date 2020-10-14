@@ -10,9 +10,5 @@ import test.tecnico.wolox.main.entities.Permission;
 public interface IPermissionDAO {
 
 	public Permission save(Permission permission);
-	
-//	public List<Permission> findAll();
-
-	public Permission findByParams(int userId, int albumId);
 
 }

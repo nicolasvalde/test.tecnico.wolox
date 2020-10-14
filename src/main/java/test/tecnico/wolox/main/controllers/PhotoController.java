@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import test.tecnico.wolox.main.entities.Photo;
 import test.tecnico.wolox.main.services.IPhotoService;
 
@@ -20,6 +21,7 @@ public class PhotoController {
 	IPhotoService photoService;
 
 	@GetMapping
+	@Operation(summary = "Muestra todas las fotos")
 	public ResponseEntity<?> getAll() {
 		try {
 			return ResponseEntity.ok().body(photoService.findAll());
@@ -29,6 +31,7 @@ public class PhotoController {
 	}
 
 	@GetMapping(params = "userId")
+	@Operation(summary = "Filtra y muestra las fotos de un determinado usuario")
 	public ResponseEntity<?> getByUserId(@RequestParam int userId) {
 		try {
 			return ResponseEntity.ok().body(photoService.findByUserId(userId));
@@ -38,6 +41,7 @@ public class PhotoController {
 	}
 
 	@PostMapping
+	@Operation(summary = "Crea una nueva foto en un álbum existente")
 	public ResponseEntity<?> create(@RequestBody Photo photo) {
 		try {
 			return ResponseEntity.ok(photoService.save(photo));

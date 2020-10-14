@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import test.tecnico.wolox.main.entities.Album;
 import test.tecnico.wolox.main.services.IAlbumService;
 
@@ -22,6 +23,7 @@ public class AlbumController {
 	IAlbumService albumService;
 
 	@GetMapping
+	@Operation(summary = "Muestra todos los álbums")
 	public ResponseEntity<?> getAll() {
 		try {
 			return ResponseEntity.ok().body(albumService.findAll());
@@ -30,7 +32,8 @@ public class AlbumController {
 		}
 	}
 
-	@GetMapping(params = "userId")
+	@GetMapping(path = "/getByUserId", params = "userId")
+	@Operation(summary = "Muestra los álbums de un usuario determinado")
 	public ResponseEntity<?> getByUserId(@RequestParam int userId) {
 		try {
 			return ResponseEntity.ok().body(albumService.findByUserId(userId));
@@ -41,6 +44,7 @@ public class AlbumController {
 
 	@PostMapping
 	@Transactional
+	@Operation(summary = "Crea un nuevo álbum vinculado con un usuario y creando los permisos iniciales")
 	public ResponseEntity<?> create(@RequestBody Album album) {
 		try {
 			return ResponseEntity.ok(albumService.save(album));

@@ -6,12 +6,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import test.tecnico.wolox.main.DAOs.IPermissionDAO;
 import test.tecnico.wolox.main.entities.Album;
@@ -29,10 +24,10 @@ public class AlbumServiceImpl implements IAlbumService {
 
 	@Autowired
 	private AlbumRepositoryImplRemote albumRepositoryRemote;
-	
+
 	@Autowired
 	private IPermissionDAO permissionDAO;
-	
+
 	@Autowired
 	private IUserRepositoryLocal userRepository;
 
@@ -73,21 +68,49 @@ public class AlbumServiceImpl implements IAlbumService {
 
 	@Override
 	public Album save(Album album) {
+
+		/*
+		 * Primero se persiste el permiso, que al crear
+		 * un album nuevo siempre sera true para read y write
+		 */
 		
-		Permission permission = permissionDAO.save(album.getPermissions().get(0));
+		Permission permission = new Permission();
+
+		permission.setRead(true);
+
+		permission.setWrite(true);
+
+		permission = permissionDAO.save(permission);
+
+		/*
+		 * Segundo se agrega la relacion del permiso creado
+		 * con el usuario creador del album, agregandose a los
+		 * permisos que pudiera tener anteriormente
+		 */
 		
 		User user = new User();
-		
+
 		user = userRepository.findById(album.getUserId()).get();
-		
-		List<Permission> pList = user.getPermissions();
-		
-		pList.add(permission);
-		
-		user.setPermissions(pList);
+
+		List<Permission> pUserList = user.getPermissions();
+
+		pUserList.add(permission);
+
+		user.setPermissions(pUserList);
 		
 		user = userRepository.save(user);
 		
+		/*
+		 * Tercero se agregan los permisos al album y se 
+		 * persiste con sus relaciones
+		 */
+		
+		List<Permission> pAlbumList = new ArrayList();
+	
+		pAlbumList.add(permission);
+		
+		album.setPermissions(pAlbumList);
+
 		return albumRepositoryLocal.save(album);
 	}
 }

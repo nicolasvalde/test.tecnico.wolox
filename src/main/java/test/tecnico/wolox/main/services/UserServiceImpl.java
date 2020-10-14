@@ -1,7 +1,6 @@
 package test.tecnico.wolox.main.services;
 
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import test.tecnico.wolox.main.entities.User;
 import test.tecnico.wolox.main.repositories.local.IUserRepositoryLocal;
 import test.tecnico.wolox.main.repositories.remote.IUserRepositoryRemote;
-import test.tecnico.wolox.main.repositories.remote.UserRepositoryImplRemote;
 
 @Service
 public class UserServiceImpl implements IUserService {

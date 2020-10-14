@@ -36,7 +36,7 @@ public class Album {
 
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "album_id")
-//	@JsonIgnore
+	@JsonIgnore
 	private List<Permission> permissions;
 
 	public int getId() {

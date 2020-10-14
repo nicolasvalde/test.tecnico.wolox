@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import test.tecnico.wolox.main.services.ICommentService;
 
 @RestController
@@ -16,7 +17,8 @@ public class CommentController {
 	@Autowired
 	private ICommentService commentService;
 
-	@GetMapping(params = "name")
+	@GetMapping(path =  "/getByName", params = "name")
+	@Operation(summary = "Filtra y muestra los comentarios por su campo 'name'")
 	public ResponseEntity<?> getByName(@RequestParam String name) {
 		try {
 			return ResponseEntity.ok().body(commentService.findByName(name));
@@ -25,7 +27,8 @@ public class CommentController {
 		}
 	}
 
-	@GetMapping(params = "userId")
+	@GetMapping(path =  "/getByUserId", params = "userId")
+	@Operation(summary = "Filtra y muestra los comentarios a partir del ID de un usuario")
 	public ResponseEntity<?> getByUserId(@RequestParam int userId) {
 		try {			
 			return ResponseEntity.ok().body(commentService.findByUserId(userId));
